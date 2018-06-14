@@ -15,10 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
 
+from core import views
 from tableros import views
 
 urlpatterns = [
-    path('tableros/', views.home, name='home'),
+    path('', include('core.urls') ),
+    path('marcador/', include('marcador.urls')),
     path('admin/', admin.site.urls),
+    path('tableros/', include('tableros.urls')),
 ]
+
+admin.site.site_header = 'Panel de Administración - Ingeniería'
